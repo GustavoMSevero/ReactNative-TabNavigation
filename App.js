@@ -1,11 +1,3 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow strict-local
- */
-
 import React from 'react';
 import {
   SafeAreaView,
@@ -19,6 +11,8 @@ import {
 import 'react-native-gesture-handler';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import Icon from 'react-native-vector-icons/FontAwesome';
+
 
 import {
   Header,
@@ -37,7 +31,7 @@ const App: () => React$Node = () => {
       </View>
     );
   }
-  
+
   function SettingsScreen() {
     return (
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
@@ -49,17 +43,31 @@ const App: () => React$Node = () => {
   const Tab = createBottomTabNavigator();
 
   return (
-      <NavigationContainer>
-        <Tab.Navigator>
-          <Tab.Screen name="Home" component={HomeScreen} />
-          <Tab.Screen name="Settings" component={SettingsScreen} />
-        </Tab.Navigator>
-      </NavigationContainer>
+    <NavigationContainer>
+      <Tab.Navigator>
+        <Tab.Screen
+          options={() => ({
+            tabBarIcon: () => {
+              return <Icon name="home" size={30} color="blue" />;
+            },
+          })}
+          name="Home"
+          component={HomeScreen} />
+        <Tab.Screen
+          options={() => ({
+            tabBarIcon: () => {
+              return <Icon name="cog" size={30} color="blue" />;
+            },
+          })}
+          name="Settings"
+          component={SettingsScreen} />
+      </Tab.Navigator>
+    </NavigationContainer>
   );
 };
 
 const styles = StyleSheet.create({
-  
+
 });
 
 export default App;
